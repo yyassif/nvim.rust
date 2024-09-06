@@ -10,7 +10,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
-    end,
+    end
   },
 
   {
@@ -58,7 +58,7 @@ return {
       dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
-		end,
+		end
   },
 
   {
@@ -66,7 +66,7 @@ return {
     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
 			require("dapui").setup()
-		end,
+		end
   },
 
   {
@@ -86,13 +86,44 @@ return {
     end
   },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "eslint-lsp",
+        "prettierd",
+        "tailwindcss-language-server",
+        "typescript-language-server",
+      },
+    },
+  },
+  
+  {
+    "nvimtools/none-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "configs.null-ls"
+    end
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    ft = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "tsx",
+      },
+    },
+  },
+
 }
